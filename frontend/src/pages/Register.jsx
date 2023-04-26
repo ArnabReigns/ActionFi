@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios, { HttpStatusCode } from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleLeft, faArrowLeft, faChevronCircleDown, faCircleLeft, faDownLeftAndUpRightToCenter, faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
 
@@ -66,7 +68,7 @@ const Register = () => {
         theme="light"
       />
       <Link to={'/'}>
-        {/* <FaArrowLeft className='backBtn' /> */} back
+      <FontAwesomeIcon className='backBtn' icon={faArrowLeft} />
       </Link>
       <div className="container">
         <h1>Sign Up</h1>

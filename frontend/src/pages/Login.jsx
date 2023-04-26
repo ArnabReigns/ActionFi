@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
     
@@ -32,7 +34,7 @@ const Login = () => {
     return (
         <div className='login'>
             <Link to={'/'}>
-                {/* <FaArrowLeft className='backBtn' /> */} back
+            <FontAwesomeIcon className='backBtn' icon={faArrowLeft} />
             </Link>
 
             <div className="container">
