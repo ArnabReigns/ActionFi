@@ -1,0 +1,14 @@
+GET http://localhost:3000
+content-type: application/json
+
+
+### sign up
+
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+    "name":"arnab chatterjee",
+    "email":"arnabchatterjee912@gmail.com",
+    "password":"reigns"
+}
