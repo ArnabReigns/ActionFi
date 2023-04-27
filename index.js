@@ -18,10 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-    app.use(express.static(path.resolve(__dirname,'frontend','dist')));
-    res.sendFile(path.resolve(__dirname,'frontend','dist','index.html'));
-});
+
 
 app.get("/api",(req,res)=>{
     res.send("API GATEWAY");
@@ -82,6 +79,17 @@ app.get("/api/getUser", async (req, res) => {
 
 app.use('/api/products/', require('./products'))
 
+
+// serve frontend
+
+app.get("*", (req, res) => {
+    app.use(express.static(path.resolve(__dirname,'frontend','dist')));
+    res.sendFile(path.resolve(__dirname,'frontend','dist','index.html'));
+});
+
+
+
 app.listen(3000, () => {
     console.log("App started at http://localhost:3000");
 });
+
