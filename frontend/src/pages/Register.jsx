@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft, faArrowLeft, faChevronCircleDown, faCircleLeft, faDownLeftAndUpRightToCenter, faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
+import { routes } from '../routes';
 
 const Register = () => {
 
@@ -29,7 +30,7 @@ const Register = () => {
     var res = await toast.promise(
       axios({
         method: 'post',
-        url: '/signup',
+        url: routes.signup,
         data: {
           name: name,
           email: email,

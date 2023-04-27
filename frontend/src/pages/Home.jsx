@@ -4,11 +4,14 @@ import { Link, redirect,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCar, faCartArrowDown, faCartFlatbed, faCartPlus, faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
+import { routes } from '../routes';
 
 const Home = () => {
 
     var ctx = useContext(UserContext);
+    
+    const [products,setProducts ] = useState([]);
 
     var cards = [
         {
@@ -41,11 +44,16 @@ const Home = () => {
 
     var navigate = useNavigate();
 
+
+    useEffect(()=>{
+        axios.get(routes.getProducts).then(prod => setProducts(prod.data));
+    },[])
+
     const logout = async () => {
         const res = await axios({
             method: 'get',
             withCredentials:true,
-            url: '/logout',
+            url: routes.logout,
         });
         ctx.setUser(null);
         console.log(res);
@@ -53,7 +61,7 @@ const Home = () => {
 
     useEffect(() => {
 
-        axios.get('/getUser', { withCredentials: true }).then(
+        axios.get(routes.getUser, { withCredentials: true }).then(
             res => {
                 if (res.data.loggedin) ctx.setUser(res.data.user);
                 console.log(res.data);
@@ -83,8 +91,10 @@ const Home = () => {
                         <Link to='/login'><button>Log In</button></Link>
                     </div>) : (
                         <div className="auth">
-                            <span>{ctx.user.name}</span>
-                            <FontAwesomeIcon className='profileBtn' icon={faUser} />
+                            <FontAwesomeIcon className='cart' icon={faCartShopping} />
+                            <div className='profileBtn'>{ctx.user.name.split(' ')[0]}
+                            <FontAwesomeIcon className='profileIcon' icon={faUser} />
+                            </div>
                             <button onClick={logout}>Log Out</button>
                         </div>
                     )}
@@ -111,7 +121,7 @@ const Home = () => {
             <section className='products'>
                 <h1>All Products</h1>
                 <div className="cardContainer">
-                    {cards.map((item, idx) => (<ProductCard info={item} key={idx} />))}
+                    {products.map((item, idx) => (<ProductCard info={item} key={idx} />))}
                 </div>
             </section>
 

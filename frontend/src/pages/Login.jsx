@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { routes } from '../routes';
 
 const Login = () => {
     
@@ -15,7 +16,7 @@ const Login = () => {
 
         var res = await axios({
             method: 'post',
-            url: '/login',
+            url: routes.login,
             withCredentials:true,
             data: {
                 email: email,

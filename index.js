@@ -23,7 +23,11 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname,'frontend','dist','index.html'));
 });
 
-app.post("/signup", async (req, res) => {
+app.get("/api",(req,res)=>{
+    res.send("API GATEWAY");
+})
+
+app.post("/api/signup", async (req, res) => {
     var user = req.body;
     if (user.email == null) return res.send("Email is required");
     if (user.name == null) return res.send("Name is required");
@@ -44,7 +48,7 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
 
     var data = req.body;
     var user = await User.findOne({ email: data.email });
@@ -62,11 +66,11 @@ app.post("/login", async (req, res) => {
 
 });
 
-app.get('/logout', (req,res)=>{
+app.get('/api/logout', (req,res)=>{
     res.clearCookie("token").send("Logged Out Successfully");
 });
 
-app.get("/getUser", async (req, res) => {
+app.get("/api/getUser", async (req, res) => {
 
     var c = req.cookies;
     var user = await User.findOne({ _id: c.token },'-password');
@@ -74,6 +78,9 @@ app.get("/getUser", async (req, res) => {
     else res.json({loggedin:false});
     
 });
+
+
+app.use('/api/products/', require('./products'))
 
 app.listen(3000, () => {
     console.log("App started at http://localhost:3000");

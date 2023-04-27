@@ -12,3 +12,15 @@ Content-Type: application/json
     "email":"arnabchatterjee912@gmail.com",
     "password":"reigns"
 }
+
+###
+POST http://localhost:3000/api/products/create
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "img": "https://images.unsplash.com/photo-1606663889134-b1dedb5ed8b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YWN0aW9uJTIwZmlndXJlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+    "desc": "something is special about this one",
+    "price": 99,
+    "category": "Anime"
+}
