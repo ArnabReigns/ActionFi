@@ -1,5 +1,5 @@
 
-var production = false;
+var production = true;
 
 var base = !production ? "http://localhost:3000" : "";
 
