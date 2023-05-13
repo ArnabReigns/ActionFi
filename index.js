@@ -92,7 +92,7 @@ app.use('/api/products/', require('./products'))
 
 app.get("/", (req, res) => {
         app.use(express.static(path.resolve(__dirname,'frontend','dist')));
-    res.sendFile(path.resolve(__dirname,'frontend','dist','index.html'));
+        res.sendFile(path.resolve(__dirname,'frontend','dist','index.html'));
 });
 app.get("/admin", (req, res) => {
         app.use(express.static(path.resolve(__dirname,'frontend','dist')));
