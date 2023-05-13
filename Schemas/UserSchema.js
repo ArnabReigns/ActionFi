@@ -4,7 +4,15 @@ const userSchema = new mongoose.Schema({
     name: String, 
     email: String, 
     password: String,
-    cart: []  
+    cart: [],
+    orders: [],
+    orderHistory: [],
+    addresses: [],
+    currentAddressIndex : {
+        type : Number,
+        default: 0
+    }
+    
 });
 
 const adminUserSchema = new mongoose.Schema({

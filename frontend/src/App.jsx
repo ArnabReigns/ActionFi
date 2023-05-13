@@ -2,11 +2,11 @@ import './App.scss'
 import Home from './pages/Home'
 import Admin from './pages/Admin'
 import { Routes, Route } from 'react-router-dom'
-import Dashboard from './components/Dashboard'
+import Dashboard from './pages/Dashboard'
 import AdminLogin from './pages/AdminLogin'
 import Register from './pages/register'
 import Login from './pages/login'
-import ProductEdit from './components/ProductEdit'
+import ProductEdit from './pages/ProductEdit'
 
 
 function App() {

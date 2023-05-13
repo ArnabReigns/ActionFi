@@ -1,7 +1,7 @@
 const express = require("express");
 var cors = require("cors");
 const cookieParser = require('cookie-parser');
-const { User } = require("./Schemas/UserSchema.js");
+const { User, Admin } = require("./Schemas/UserSchema.js");
 const path = require("path");
 const { hashPassword,comparePassword } = require("./hashing.js");
 require("./db.js");
@@ -74,6 +74,14 @@ app.get("/api/getUser", async (req, res) => {
     if(user != null) res.json({loggedin:true, user: user});
     else res.json({loggedin:false});
     
+});
+
+app.post('/api/getAdmin', async (req, res) => {
+    
+    var user = req.body;
+    var u = await Admin.findOne({username: user.username});
+    res.send(u);
+
 });
 
 

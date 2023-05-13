@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { routes } from '../routes';
 
 const AdminLogin = () => {
   
@@ -9,10 +11,21 @@ const AdminLogin = () => {
   var navigate = useNavigate();
 
   useEffect(()=>{
-    if(form.userame == "reigns" && form.password == "reigns")
+    if(form.userame != "" && form.password.length > 0)
     {
-      ctx.setAdmin(true);
-      navigate('/admin');
+
+      axios.post(routes.getAdmin, {username: form.userame}).then(user =>{
+        if(user == null) return;
+
+        console.log(user.data.password == form.password);
+
+        if(user.data.password == form.password){
+          ctx.setAdmin(true);
+          ctx.setAdminUser(user.data);
+          navigate('/admin');
+        }
+      });
+      
     }
   },[form])
   

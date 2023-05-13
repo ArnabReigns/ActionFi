@@ -7,7 +7,6 @@ const ProductsSchema = new mongoose.Schema({
     desc: String,
     price: Number,
     category: String,
-
 });
 
 module.exports = {

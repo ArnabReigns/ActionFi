@@ -5,6 +5,6 @@ url = 'mongodb+srv://Arnab:12345@actionfi.cmg8vhv.mongodb.net/actionfi?retryWrit
 mongoose.connect(url).then(()=>{
     console.log("DB connected")
   },(err)=>{
-    console.log("error")
+    console.log(err)
 });
 
